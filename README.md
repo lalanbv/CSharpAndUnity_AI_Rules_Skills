@@ -7,7 +7,7 @@
 ## 目录结构
 
 ```
-C#AndUnity/
+CSharpAndUnity_AI_Rules_Skills/
 ├── README.md                           # 本文件 - 快速索引
 ├── rules/
 │   └── UNITY_DEVELOPMENT_RULES.md      # Unity 开发规则与最佳实践
@@ -17,9 +17,61 @@ C#AndUnity/
 │   └── UNITY_SKILLS.md                 # AI 技能体系与使用指南
 ├── templates/
 │   └── UNITY_CODE_TEMPLATES.md         # 代码模板库
-└── checklists/
-    └── UNITY_CHECKLISTS.md             # 开发检查清单
+├── checklists/
+│   └── UNITY_CHECKLISTS.md             # 开发检查清单
+└── qoder-config/                       # Qoder AI 工具配置 (新增)
+    ├── QODER_SETUP.md                  # Qoder 安装指南
+    ├── rules/                          # Qoder 规则文件
+    │   ├── unity-redlines.md
+    │   └── unity-development.md
+    └── skills/                         # Qoder 技能配置
+        ├── unity-developer/SKILL.md
+        ├── unity-performance/SKILL.md
+        ├── unity-architecture/SKILL.md
+        ├── unity-code-reviewer/SKILL.md
+        └── unity-workflows/SKILL.md
 ```
+
+---
+
+## Qoder AI 工具配置
+
+本项目已完整集成 Qoder AI 工具配置，包含规则和技能两大模块。
+
+### 快速安装
+
+在 PowerShell 中运行：
+```powershell
+# 进入项目目录
+cd E:\lalanbvGitHub\CSharpAndUnity_AI_Rules_Skills
+
+# 创建 Qoder 配置目录
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.qoder\rules"
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.qoder\skills"
+
+# 安装规则和技能
+Copy-Item -Path ".\qoder-config\rules\*" -Destination "$env:USERPROFILE\.qoder\rules\" -Recurse -Force
+Copy-Item -Path ".\qoder-config\skills\*" -Destination "$env:USERPROFILE\.qoder\skills\" -Recurse -Force
+
+Write-Host "安装完成!" -ForegroundColor Green
+```
+
+### 可用技能
+
+| 技能 | 说明 | 触发关键词 |
+|-----|-----|-----------|
+| unity-developer | 综合开发 | Unity, MonoBehaviour, 生命周期 |
+| unity-performance | 性能优化 | 性能, 优化, GC, 对象池 |
+| unity-architecture | 架构设计 | 架构, 单例, 事件系统, ScriptableObject |
+| unity-code-reviewer | 代码审查 | 审查, review, 检查代码 |
+| unity-workflows | 开发工作流 | Editor, Inspector, Input System |
+
+### 规则文件
+
+- **unity-redlines.md** - P0-P3级别性能红线，自动应用于 *.cs 文件
+- **unity-development.md** - Unity开发规范与最佳实践
+
+详细说明请查看 [qoder-config/QODER_SETUP.md](qoder-config/QODER_SETUP.md)
 
 ---
 
